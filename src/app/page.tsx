@@ -14,6 +14,8 @@ import { Room } from "@/db/schema";
 import { Github } from "lucide-react";
 import { TagsList } from "@/components/tags-list";
 import { splitTags } from "@/lib/utils";
+import { SearchBar } from "./search-bar";
+import { getRooms } from "@/data-access/rooms";
 
 function RoomCard({ room }: { room: Room }) {
   return (
@@ -45,8 +47,12 @@ function RoomCard({ room }: { room: Room }) {
   );
 }
 
-export default async function Home() {
-  const rooms = await db.query.room.findMany();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { search: string };
+}) {
+  const rooms = await getRooms(searchParams.search);
 
   return (
     <main className="min-h-screen p-16">
@@ -55,6 +61,10 @@ export default async function Home() {
         <Button asChild>
           <Link href="/create-room">Create Room</Link>
         </Button>
+      </div>
+
+      <div className="mb-12">
+        <SearchBar />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
