@@ -59,7 +59,7 @@ export function EditRoomForm({ room }: { room: Room }) {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Dev Finder Is Awesome" />
+                <Input {...field} placeholder="Working on cool stuff!" />
               </FormControl>
               <FormDescription>This is your public room name.</FormDescription>
               <FormMessage />
@@ -76,11 +76,12 @@ export function EditRoomForm({ room }: { room: Room }) {
               <FormControl>
                 <Input
                   {...field}
-                  placeholder="Im working on a side project, come join me"
+                  placeholder="I'm working on a side project, come join me"
                 />
               </FormControl>
               <FormDescription>
-                Please describe what you are be coding on
+                Provide a brief room description to help users understand its
+                purpose.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -96,11 +97,11 @@ export function EditRoomForm({ room }: { room: Room }) {
               <FormControl>
                 <Input
                   {...field}
-                  placeholder="https://github.com/webdevcody/dev-finder"
+                  placeholder="https://github.com/rudravashishtha/open-coders"
                 />
               </FormControl>
               <FormDescription>
-                Please put a link to the project you are working on
+                Share your GitHub repository link.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -117,8 +118,7 @@ export function EditRoomForm({ room }: { room: Room }) {
                 <Input {...field} placeholder="typescript, nextjs, tailwind" />
               </FormControl>
               <FormDescription>
-                List your programming languages, frameworks, libraries so people
-                can find you content
+                Add relevant tags to categorize your room.
               </FormDescription>
               <FormMessage />
             </FormItem>

@@ -9,7 +9,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon, Settings, UserRound } from "lucide-react";
+import {
+  LogInIcon,
+  LogOutIcon,
+  Settings,
+  UserRound,
+  UserRoundX,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import {
@@ -24,7 +30,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
-// import { deleteAccountAction } from "./actions";
+import { deleteAccountAction } from "./actions";
 
 function AccountDropdown() {
   const session = useSession();
@@ -45,7 +51,7 @@ function AccountDropdown() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async () => {
-                // await deleteAccountAction();
+                await deleteAccountAction();
                 signOut({ callbackUrl: "/" });
               }}
             >
@@ -66,7 +72,7 @@ function AccountDropdown() {
                 }
               />
               <AvatarFallback>
-                {session.data?.user?.name?.charAt(0)} 
+                {session.data?.user?.name?.charAt(0)}
               </AvatarFallback>
             </Avatar>
 
@@ -74,17 +80,27 @@ function AccountDropdown() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <DeleteIcon className="mr-2" /> Delete Account
+          <DropdownMenuItem>
+            <Link href="/browse" className="flex items-center">
+              <UserRound className="mr-2" /> Browse
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/your-rooms" className="flex items-center">
+              <UserRound className="mr-2" /> Your Rooms
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href="/profile" className="flex items-center">
               <UserRound className="mr-2" /> Your Profile
             </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            <UserRoundX className="mr-2" /> Delete Account
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
@@ -123,11 +139,17 @@ export function Header() {
         <nav className="flex gap-8 items-center justify-center">
           {isLoggedIn && (
             <>
-              <Link className="hover:underline" href="/browse">
+              <Link
+                className="hidden md:block md:hover:underline"
+                href="/browse"
+              >
                 Browse
               </Link>
 
-              <Link className="hover:underline" href="/your-rooms">
+              <Link
+                className="hidden md:block md:hover:underline"
+                href="/your-rooms"
+              >
                 Your Rooms
               </Link>
             </>
