@@ -61,7 +61,7 @@ export function SearchBar() {
                             <FormControl>
                                 <Input
                                     {...field}
-                                    className="w-[440px]"
+                                    className="md:w-[500px] xl:w-[600px]"
                                     placeholder="Filter rooms by keywords, such as typescript, next.js, python"
                                 />
                             </FormControl>
@@ -78,13 +78,13 @@ export function SearchBar() {
                 {/* Clear button */}
                 {query.get("search") && (
                     <Button
-                        variant="link"
+                        variant="secondary"
                         onClick={() => {
                             form.setValue("search", "");
                             router.push("/");
                         }}
                     >
-                        Clear
+                        Clear Filter
                     </Button>
                 )}
             </form>

@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon, Settings } from "lucide-react";
+import { DeleteIcon, LogInIcon, LogOutIcon, Settings, UserRound } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import {
@@ -65,7 +65,9 @@ function AccountDropdown() {
                   "https://source.unsplash.com/random/200x200"
                 }
               />
-              <AvatarFallback>{session.data?.user?.name?.charAt(0)}</AvatarFallback>
+              <AvatarFallback>
+                {session.data?.user?.name?.charAt(0)} 
+              </AvatarFallback>
             </Avatar>
 
             {session.data?.user?.name}
@@ -79,9 +81,9 @@ function AccountDropdown() {
           >
             <DeleteIcon className="mr-2" /> Delete Account
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>
-            <Link href="https://myaccount.google.com" className="flex items-center">
-              <Settings className="mr-2" /> Manage Account
+          <DropdownMenuItem>
+            <Link href="/profile" className="flex items-center">
+              <UserRound className="mr-2" /> Your Profile
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -118,7 +120,7 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="flex gap-8">
+        <nav className="flex gap-8 items-center justify-center">
           {isLoggedIn && (
             <>
               <Link className="hover:underline" href="/browse">

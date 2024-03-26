@@ -36,7 +36,7 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
               rel="noopener noreferrer"
             >
               <Github />
-              Github Project
+              Github Repository
             </Link>
           )}
 

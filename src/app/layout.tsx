@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <NextTopLoader color="#fff" />
+          <NextTopLoader color="#3492eb" />
           <Header />
           {children}
         </Providers>

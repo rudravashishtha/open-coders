@@ -1,77 +1,79 @@
-import { Button } from "@/components/ui/button";
-import { db } from "@/db";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Room } from "@/db/schema";
-import { Github } from "lucide-react";
-import { TagsList } from "@/components/tags-list";
-import { splitTags } from "@/lib/utils";
-import { SearchBar } from "./search-bar";
-import { getRooms } from "@/data-access/rooms";
-
-function RoomCard({ room }: { room: Room }) {
+export default function LandingPage() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-1">
-        {room.githubRepo && (
-          <Link
-            href={room.githubRepo}
-            className="flex items-center gap-3 mb-2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github />
-            Github Repository
-          </Link>
-        )}
-        <TagsList tags={splitTags(room.tags)} />
-      </CardContent>
-      <CardFooter>
-        <Button asChild>
-          <Link href={`/rooms/${room.id}`}>Join Room</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-}
+    <div className="">
+      <div className="relative isolate px-6 pt-14 lg:px-8">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
+        </div>
+        <div className="mx-auto max-w-2xl py-5">
+          <div className="text-center">
+            <div className="mx-auto w-fit mb-10">
+              <div className="flex gap-0 border-solid border-black dark:border-white border-2 p-1">
+                <span className="p-2 bg-black text-white dark:text-black dark:bg-white">
+                  OPEN
+                </span>
+                <span className="p-2 text-black  dark:text-white">CODERS</span>
+              </div>
+            </div>
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { search: string };
-}) {
-  const rooms = await getRooms(searchParams.search);
-
-  return (
-    <main className="min-h-screen p-16">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl">Find Dev Rooms</h1>
-        <Button asChild>
-          <Link href="/create-room">Create Room</Link>
-        </Button>
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+              Find other awesome devs to pair with online
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-200">
+              This platform is for sharing your screen and working with other
+              random developers online so that you can work together
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/browse"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
+        </div>
       </div>
-
-      <div className="mb-12">
-        <SearchBar />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        {rooms.map((room) => {
-          return <RoomCard key={room.id} room={room} />;
-        })}
-      </div>
-    </main>
+      <footer className="border-t-2 dark:border-[#ffffff62] border-[#0000005c] fixed bottom-0 left-0 w-full">
+          <div className="flex gap-3 px-10 py-2 justify-center items-center">
+            <Link href="https://twitter.com/iamshadmirza" className="underline">
+              <Github />
+            </Link>
+            <Link href="https://twitter.com/iamshadmirza" className="underline">
+              <Linkedin />
+            </Link>
+            <Link href="https://twitter.com/iamshadmirza" className="underline">
+              <Mail />
+            </Link>
+            <Link href="https://twitter.com/iamshadmirza" className="underline">
+              <Instagram />
+            </Link>
+          </div>
+        </footer>
+    </div>
   );
 }

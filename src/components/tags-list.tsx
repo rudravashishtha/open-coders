@@ -10,7 +10,7 @@ export function TagsList({ tags }: { tags: string[] }) {
     <div className="flex gap-2 flex-wrap">
       {tags.map((tag) => (
         <button
-          className={cn(badgeVariants())}
+          className={`${cn(badgeVariants())} cursor-pointer`}
           key={tag}
           onClick={() => {
             router.push(`/browse?search=${tag}`);
